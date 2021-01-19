@@ -22,15 +22,3 @@ with [npm run start] command before to continue with system testing.
 Also make sure you have web server stack configured in your machine [XAMP or LAMP] with a database 
 named [cinema] [make sure you star it before you start your project otherwise you are going to end 
 up with an error]
-
-User
-  Admin
-	Manager
-  Owner
-	viewer/customer
-Notifications
-Seller
-Hall
-Book
-Ticket
-Payment
