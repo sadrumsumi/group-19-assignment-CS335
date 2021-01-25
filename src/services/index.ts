@@ -1,3 +1,5 @@
-import { HomeServices } from "./HomeServices";
+import { homeServices } from "./home";
+import { userServices } from "./user";
+import { dashboardServices } from "./dashboard";
 
-export { HomeServices };
+export { dashboardServices, homeServices, userServices };

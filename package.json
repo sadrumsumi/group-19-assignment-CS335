@@ -23,6 +23,7 @@
       "express": "^4.17.1",
       "http-errors": "^1.8.0",
       "joi": "^17.3.0",
+      "jsonwebtoken": "^8.5.1",
       "moment-timezone": "^0.5.31",
       "morgan": "^1.10.0",
       "multer": "^1.4.2",
@@ -38,6 +39,6 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "test": "mocha 'test/**/*.ts' || true"
+      "test": "mocha -r ts-node/register 'test/**/*.ts' || true"
    }
 }

@@ -17,6 +17,9 @@ export class Comment extends BaseEntity {
   id: string;
 
   @Column({ nullable: false })
+  name: string;
+
+  @Column({ nullable: false })
   email: string;
 
   @Column({ nullable: false })
@@ -35,12 +38,14 @@ export class Comment extends BaseEntity {
 
   @BeforeInsert()
   updateDateCreation() {
-    this.createdAt = Today(new Date()).unix();
+    this.createdAt = Today(new Date()).format();
+ 
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
-    this.updatedAt = Today(new Date()).unix();
+    this.updatedAt = Today(new Date()).format();
+ 
   }
 
   constructor(data?: hall) {

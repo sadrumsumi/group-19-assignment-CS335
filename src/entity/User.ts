@@ -25,20 +25,17 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ nullable: false })
-  firtsname: string;
-
-  @Column({ nullable: false })
-  lastname: string;
+  @Column({ unique: true, nullable: false })
+  phone: string;
 
   @Column({ unique: true, nullable: false })
   email: string;
 
-  @Column({ unique: true, nullable: false })
-  phone: string;
-
   @Column({ default: null })
   address: string;
+
+  @Column({ nullable: false })
+  password: string;
 
   /** relation part */
   @OneToMany((type) => Hall, (hall) => hall.user)
@@ -79,30 +76,26 @@ export class User extends BaseEntity {
 
   @BeforeInsert()
   updateDateCreation() {
-    this.createdAt = Today(new Date()).unix();
+    this.createdAt = Today(new Date()).format();
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
-    this.updatedAt = Today(new Date()).unix();
+    this.updatedAt = Today(new Date()).format();
   }
 
   constructor(data?: user) {
     super();
     if (data) {
-      this.email = data.email;
       this.phone = data.phone;
-      this.address = data.address;
-      this.lastname = data.lastname;
-      this.firtsname = data.firtsname;
+      this.email = data.email;
+      this.password = data.password;
     }
   }
 }
 
 export interface user {
-  email: string;
   phone: string;
-  address: string;
-  lastname: string;
-  firtsname: string;
+  email: string;
+  password: string;
 }

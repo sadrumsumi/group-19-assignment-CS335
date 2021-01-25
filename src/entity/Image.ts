@@ -34,12 +34,14 @@ export class Image extends BaseEntity {
 
   @BeforeInsert()
   updateDateCreation() {
-    this.createdAt = Today(new Date()).unix();
+    this.createdAt = Today(new Date()).format();
+ 
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
-    this.updatedAt = Today(new Date()).unix();
+    this.updatedAt = Today(new Date()).format();
+ 
   }
 
   constructor(data?: hall) {
