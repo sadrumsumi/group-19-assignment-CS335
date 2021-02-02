@@ -1,3 +1,4 @@
-import { userModal } from "./userModal";
+import { userModal } from "./User";
+import { ownerModal } from "./Owner";
 
-export { userModal };
+export { ownerModal, userModal };

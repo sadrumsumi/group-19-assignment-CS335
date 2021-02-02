@@ -1,5 +1,6 @@
 import { userRouter } from "./user";
 import { homeRouter } from "./home";
-import { dashboardRouter } from "./dashboard";
+import { owneRouter } from "./owners";
+import { paymentRouter } from "./payment";
 
-export const Routes = [userRouter, homeRouter, dashboardRouter];
+export const Routes = [userRouter, homeRouter, owneRouter, paymentRouter];

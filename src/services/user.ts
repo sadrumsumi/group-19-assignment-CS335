@@ -1,32 +1,36 @@
 import { Request, Response } from "express";
 import { Validation, Password } from "../utils";
 import { userModal } from "../modal";
+import { Authentication } from "../utils";
 
 export class userServices {
   /** /GET */
-  static async signin(req: Request, res: Response) {
-    try {
-      res.render("signin", { error: "" });
-    } catch (error) {}
+  static signin(req: Request, res: Response) {
+    res.render("signin", { error: "" });
   }
 
   /** /POST */
   static async postSignin(req: Request, res: Response) {
     try {
       const { username, password } = req.body;
-      const { status } = await Validation.signin({
+      const validation = await Validation.signin({
         username,
         password,
       });
-      if (status) {
+      if (validation["status"]) {
         const fetchResult = await userModal.signin({ username });
-        if (fetchResult) {
-          const { status, message } = await Password.compare({
+        if (fetchResult["status"]) {
+          const comparison = await Password.compare({
             password,
-            hash: fetchResult["password"],
+            hash: fetchResult["message"]["password"],
           });
-          if (status) {
-            res.redirect("/dashboard");
+          if (comparison["status"]) {
+            const { message } = await Authentication.genarateToken(req, res, {
+              phone: fetchResult["message"]["phone"],
+              email: fetchResult["message"]["email"],
+              role: fetchResult["message"]["userole"],
+            });
+            message.redirect("/");
           } else {
             res.render("signin", { error: "Invalid username or password." });
           }
@@ -36,14 +40,14 @@ export class userServices {
       } else {
         res.render("signin", { error: "Invalid input." });
       }
-    } catch (error) {}
+    } catch (error) {
+      res.render("error", { error: error });
+    }
   }
 
   /** /GET */
   static async signup(req: Request, res: Response) {
-    try {
-      res.render("signup", { error: "" });
-    } catch (error) {}
+    res.render("signup", { error: "" });
   }
 
   /** /POST */
@@ -59,12 +63,12 @@ export class userServices {
       if (status) {
         // data insert result
         const hash = await Password.encrypt({ password });
-        const insResult = await userModal.signup({
+        const { status } = await userModal.signup({
           phone,
           email,
           password: hash,
         });
-        if (insResult) {
+        if (status) {
           res.render("signin", { error: "" });
         } else {
           res.render("signup", {
@@ -74,7 +78,9 @@ export class userServices {
       } else {
         res.render("signup", { error: "Invalid input." });
       }
-    } catch (error) {}
+    } catch (error) {
+      res.render("error", { error: error });
+    }
   }
 
   /** */

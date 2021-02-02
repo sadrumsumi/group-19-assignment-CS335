@@ -10,6 +10,8 @@ import * as cookieParser from "cookie-parser";
 import { NextFunction, Request, Response } from "express";
 
 import * as env from "dotenv";
+import { Roles } from "./role";
+import { Role } from "./entity";
 import { Logger } from "./config";
 import { Routes } from "./routes";
 
@@ -19,6 +21,15 @@ export default (async function () {
   try {
     // wait for database connections
     await createConnection();
+
+    // insert customer role
+    // for (let a = 0; a < Roles.length; a++) {
+    //   const insRole = new Role({
+    //     name: Roles[a].name,
+    //     description: Roles[a].description,
+    //   });
+    //   insRole.save();
+    // }
 
     // create express app
     const app = express();

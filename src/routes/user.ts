@@ -1,7 +1,8 @@
-import * as express from "express";
+import { Router } from "express";
 import { Authentication } from "../utils";
 import { userServices } from "../services";
-export const userRouter = express.Router();
+
+export const userRouter = Router();
 
 // protected route
 userRouter.get("/signin", userServices.signin);

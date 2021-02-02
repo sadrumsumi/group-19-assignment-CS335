@@ -1,5 +1,6 @@
-import * as express from "express";
+import { Router } from "express";
 import { homeServices } from "../services";
-export const homeRouter = express.Router();
+
+export const homeRouter = Router();
 
 homeRouter.get("/", homeServices.home);
