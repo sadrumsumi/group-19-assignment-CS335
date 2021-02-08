@@ -84,5 +84,11 @@ export class userServices {
   }
 
   /** */
-  static async logout(req: Request, res: Response) {}
+  static async logout(req: Request, res: Response) {
+    try {
+      res.redirect("/");
+    } catch (error) {
+      res.render("error", { error: error });
+    }
+  }
 }

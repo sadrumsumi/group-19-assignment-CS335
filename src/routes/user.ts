@@ -5,7 +5,7 @@ import { userServices } from "../services";
 export const userRouter = Router();
 
 // protected route
-userRouter.get("/signin", userServices.signin);
+userRouter.get("/signin", Authentication.logout, userServices.signin);
 
 userRouter.post("/signin", userServices.postSignin);
 
@@ -13,3 +13,6 @@ userRouter.post("/signin", userServices.postSignin);
 userRouter.get("/signup", userServices.signup);
 
 userRouter.post("/signup", userServices.postSignup);
+
+// protected route
+userRouter.get("/logout", Authentication.login, userServices.logout);

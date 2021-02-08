@@ -12,6 +12,7 @@ export class userModal {
     try {
       // user account
       const insResult = new User({
+        brand: phone,
         phone: phone,
         email: email,
         password: password,

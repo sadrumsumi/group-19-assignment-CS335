@@ -62,19 +62,35 @@
           >
         </li>
 
-        <!-- Nav Item - Charts -->
+        <!-- Nav Item - Employee -->
         <li class="nav-item">
-          <a class="nav-link" href="/owners">
+          <a class="nav-link" href="/employee">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Owners</span></a
+            <span>Employee</span></a
           >
         </li>
 
-        <!-- Nav Item - Tables -->
+        <!-- Nav Item - Tickets -->
         <li class="nav-item">
-          <a class="nav-link" href="/payment">
+          <a class="nav-link" href="/">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Tickets</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Payment -->
+        <li class="nav-item">
+          <a class="nav-link" href="/">
             <i class="fas fa-fw fa-table"></i>
             <span>Payment</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Notifications</span></a
           >
         </li>
 
@@ -178,10 +194,7 @@
                     Activity Log
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a
-                    class="dropdown-item"
-                    href="/logout"
-                  >
+                  <a class="dropdown-item" href="/logout">
                     <i
                       class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
                     ></i>
@@ -198,59 +211,12 @@
             <!-- Content Row -->
             <div class="row">
               <!-- Content Column -->
-              <div class="col-lg-4 col-sm-12 mb-4">
-                <!-- Project Card Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Registration form
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <form class="user" method="POST" action="/addOwner">
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          id="brand"
-                          name="brand"
-                          type="text"
-                          aria-describedby="brandHelp"
-                          placeholder="Brand..."
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          id="phone"
-                          name="phone"
-                          type="number"
-                          aria-describedby="emailHelp"
-                          placeholder="Phone..."
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          id="email"
-                          name="email"
-                          type="email"
-                          aria-describedby="emailHelp"
-                          placeholder="Email..."
-                        />
-                      </div>
-                      <button type="submit" class="btn btn-primary btn-block">
-                        Submit
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-8 col-sm-12 mb-4">
+              <div class="col-lg-12 col-sm-12 mb-4">
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">List</h6>
+                  <div style="display: flex; justify-content: space-between;" class="card-header py-3">
+                    <a class="font-weight-bold text-primary" href="/employee">List</a>
+                    <a class="font-weight-bold text-primary" href=""></a>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -262,21 +228,17 @@
                       >
                         <thead>
                           <tr>
-                            <th>Brand</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th>Address</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           <% for(value in data){ %>
                           <tr>
-                            <td><%= data[value].brand %></td>
-                            <td><%= data[value].phone %></td>
-                            <td><%= data[value].email %></td>
-                            <td><%= data[value].address %></td>
-                            <td></td>
+                            <td><%= data[value][''] %></td>
+                            <td><%= data[value][''] %></td>
+                            <td><%= data[value][''] %></td>
                           </tr>
                           <% } %>
                         </tbody>
@@ -309,45 +271,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/assets/vendor/jquery/jquery.min.js"></script>

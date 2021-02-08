@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 env.config();
 export class Authentication {
+  /** */
   static async genarateToken(req: Request, res: Response, data): Promise<any> {
     try {
       const expiration = 3600000; // expire after 1h
@@ -25,21 +26,6 @@ export class Authentication {
     }
   }
 
-  // check if user logout
-  static logout(req: Request, res: Response, next: NextFunction) {
-    try {
-      const token = req.cookies.token || "";
-      console.log(!token)
-      if (!token) {
-        next();
-      } else {
-        res.redirect("/");
-      }
-    } catch (error) {
-      res.render("error", { error: "" });
-    }
-  }
-
   /** */
   static async verifyToken(
     req: Request,
@@ -56,6 +42,39 @@ export class Authentication {
       }
     } catch (error) {
       return Promise.reject({ status: false, message: error.toString() });
+    }
+  }
+
+  /** to login lets' check if you logout */
+  static async logout(req: Request, res: Response, next: NextFunction) {
+    try {
+      const token = req.cookies.token || "";
+      if (!token) {
+        next();
+      } else {
+        res.redirect("/");
+      }
+    } catch (error) {
+      res.render("error", { error: error });
+    }
+  }
+
+  /** to logout lets' check if you login [web]*/
+  static async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const token = req.cookies.token || "";
+      if (!token) {
+        next();
+      } else {
+        res.cookie("token", "", {
+          expires: 0,
+          secure: false, // set to true if your using https
+          httpOnly: true,
+        });
+        next();
+      }
+    } catch (error) {
+      res.render("error", { error: error });
     }
   }
 }

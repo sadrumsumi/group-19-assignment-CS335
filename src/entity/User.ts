@@ -26,6 +26,9 @@ export class User extends BaseEntity {
   id: string;
 
   @Column({ unique: true, nullable: false })
+  brand: string;
+
+  @Column({ unique: true, nullable: false })
   phone: string;
 
   @Column({ unique: true, nullable: false })
@@ -87,6 +90,7 @@ export class User extends BaseEntity {
   constructor(data?: user) {
     super();
     if (data) {
+      this.brand = data.brand;
       this.phone = data.phone;
       this.email = data.email;
       this.password = data.password;
@@ -95,6 +99,7 @@ export class User extends BaseEntity {
 }
 
 export interface user {
+  brand: string;
   phone: string;
   email: string;
   password: string;
