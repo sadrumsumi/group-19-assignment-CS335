@@ -72,7 +72,7 @@
 
         <!-- Nav Item - Tickets -->
         <li class="nav-item">
-          <a class="nav-link" href="/">
+          <a class="nav-link" href="/tickets">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Tickets</span></a
           >
@@ -80,7 +80,7 @@
 
         <!-- Nav Item - Payment -->
         <li class="nav-item">
-          <a class="nav-link" href="/">
+          <a class="nav-link" href="/payment">
             <i class="fas fa-fw fa-table"></i>
             <span>Payment</span></a
           >
@@ -214,9 +214,17 @@
               <div class="col-lg-12 col-sm-12 mb-4">
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                  <div style="display: flex; justify-content: space-between;" class="card-header py-3">
+                  <div
+                    style="display: flex; justify-content: space-between"
+                    class="card-header py-3"
+                  >
                     <h6 class="m-0 font-weight-bold text-primary"></h6>
-                    <a style="text-decoration: none;" class="font-weight-bold text-primary" href="/employee-add">Add</a>
+                    <a
+                      style="text-decoration: none"
+                      class="font-weight-bold text-primary"
+                      href="/employee-add"
+                      >Add</a
+                    >
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -227,11 +235,11 @@
                         cellspacing="0"
                       >
                         <thead>
-                            <tr>
-                              <th>Phone</th>
-                              <th>Email</th>
-                              <th>Action</th>
-                            </tr>
+                          <tr>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                          </tr>
                         </thead>
                         <tbody>
                           <% for(value in data){ %>
