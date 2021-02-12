@@ -3,8 +3,9 @@ import * as Joi from "joi";
 export class Validation {
   /**signin validation handler function*/
   static async signup(data: signup): Promise<any> {
-    const { phone, email, password, cpassword } = data;
+    const { brand, phone, email, password, cpassword } = data;
     const schema = await Joi.object({
+      brand: Joi.string().required(),
       phone: Joi.string().required().pattern(new RegExp("^[0-9]{10,12}$")),
       email: Joi.string()
         .required()
@@ -17,7 +18,13 @@ export class Validation {
         .pattern(new RegExp("^[a-zA-Z0-9]{6,30}$")),
       cpassword: Joi.string().required().valid(Joi.ref("password")),
     });
-    const { error } = schema.validate({ phone, email, password, cpassword });
+    const { error } = schema.validate({
+      brand,
+      phone,
+      email,
+      password,
+      cpassword,
+    });
     if (error) {
       return Promise.resolve({ status: false, message: "Invalid input." });
     } else {
@@ -80,6 +87,7 @@ export class Validation {
 
 /**signin parameter*/
 export interface signup {
+  brand: string;
   phone: string;
   email: string;
   password: string;
