@@ -39,26 +39,26 @@ export class Comment extends BaseEntity {
   @BeforeInsert()
   updateDateCreation() {
     this.createdAt = Today(new Date()).format();
- 
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
     this.updatedAt = Today(new Date()).format();
- 
   }
 
   constructor(data?: hall) {
     super();
     if (data) {
-      this.email = data.email;
-      this.subject = data.subject;
-      this.description = data.description;
+      this.name = data["name"];
+      this.email = data["email"];
+      this.subject = data["subject"];
+      this.description = data["description"];
     }
   }
 }
 
 export interface hall {
+  name: string;
   email: string;
   subject: string;
   description: string;

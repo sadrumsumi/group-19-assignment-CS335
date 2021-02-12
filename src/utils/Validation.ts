@@ -51,6 +51,31 @@ export class Validation {
       return Promise.resolve({ status: true, message: "look fine." });
     }
   }
+
+  /** */
+  static async contactUs({ name, email, subject, message }: contactUs) {
+    const schema = await Joi.object({
+      name: Joi.string().required(),
+      email: Joi.string()
+        .required()
+        .email({
+          minDomainSegments: 2,
+          tlds: { allow: ["com", "net"] },
+        }),
+      subject: Joi.string().required(),
+      message: Joi.string().required(),
+    });
+    const { error } = schema.validate({ name, email, subject, message });
+    if (error) {
+      let { details } = error;
+      return Promise.reject({
+        status: 400,
+        message: `${"Invalid input," + details[0]["message"]}`,
+      });
+    } else {
+      return Promise.resolve({ status: 200, message: "Look fine." });
+    }
+  }
 }
 
 /**signin parameter*/
@@ -65,4 +90,11 @@ export interface signup {
 export interface signin {
   username: string;
   password: string;
+}
+
+export interface contactUs {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
 }

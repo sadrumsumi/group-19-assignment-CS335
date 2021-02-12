@@ -4,8 +4,10 @@ import { owneRouter } from "./owners";
 import { paymentRouter } from "./payment";
 import { employeeRouter } from "./Employee";
 import { ticketRouter } from "./Tickets";
+import { contactRouter } from "./Contact";
 
 export const Routes = [
+  contactRouter,
   ticketRouter,
   employeeRouter,
   userRouter,
