@@ -22,6 +22,9 @@ export class Role extends BaseEntity {
   name: string;
 
   @Column({ nullable: false })
+  position: number;
+
+  @Column({ nullable: false })
   description: string;
 
   @OneToMany((type) => UseRole, (userole) => userole.role)
@@ -38,19 +41,18 @@ export class Role extends BaseEntity {
   @BeforeInsert()
   updateDateCreation() {
     this.createdAt = Today(new Date()).format();
- 
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
     this.updatedAt = Today(new Date()).format();
- 
   }
 
   constructor(data?: hall) {
     super();
     if (data) {
       this.name = data.name;
+      this.position = data.position;
       this.description = data.description;
     }
   }
@@ -58,5 +60,6 @@ export class Role extends BaseEntity {
 
 export interface hall {
   name: string;
+  position: number;
   description: string;
 }

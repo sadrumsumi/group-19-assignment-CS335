@@ -25,7 +25,7 @@ export class Activity extends BaseEntity {
   latitude: string;
 
   @Column({ default: null })
-  longtude: string;
+  longitude: string;
 
   @Column({ nullable: false })
   type: string;
@@ -60,7 +60,7 @@ export class Activity extends BaseEntity {
       this.user = data.user;
       this.type = data.type;
       this.latitude = data.latitude;
-      this.longtude = data.longtude;
+      this.longitude = data.longitude;
     }
   }
 }
@@ -70,5 +70,5 @@ export interface hall {
   user: User;
   type: string;
   latitude: string;
-  longtude: string;
+  longitude: string;
 }

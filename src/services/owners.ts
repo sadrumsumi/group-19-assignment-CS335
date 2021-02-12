@@ -18,6 +18,7 @@ export class ownerServices {
     try {
       const { brand, phone, email } = req.body;
       const valResult = await Validation.signup({
+        brand,
         phone,
         email,
         password: phone,

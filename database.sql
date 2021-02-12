@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 19, 2021 at 05:47 PM
+-- Generation Time: Feb 12, 2021 at 03:05 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.14
 
@@ -31,12 +31,19 @@ CREATE TABLE `activity` (
   `id` int NOT NULL,
   `ip` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `latitude` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `longtude` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `longitude` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `userId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `ip`, `latitude`, `longitude`, `type`, `createdAt`, `updatedAt`, `userId`) VALUES
+(1, '', '', '', 'signup', '2021-02-12 17:44:20.000000', '2021-02-12 17:44:20.308103', 1);
 
 -- --------------------------------------------------------
 
@@ -46,6 +53,7 @@ CREATE TABLE `activity` (
 
 CREATE TABLE `comment` (
   `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `subject` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -81,6 +89,26 @@ CREATE TABLE `image` (
   `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `movieId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int NOT NULL,
+  `timestamp` bigint NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `timestamp`, `name`) VALUES
+(3, 1613139690457, 'userole1613139690457'),
+(4, 1613139696767, 'admin1613139696767');
 
 -- --------------------------------------------------------
 
@@ -138,10 +166,22 @@ CREATE TABLE `payment` (
 CREATE TABLE `role` (
   `id` int NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `position` int NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `position`, `description`, `createdAt`, `updatedAt`) VALUES
+(1, 'admin', 1, 'Granted general control of the system.', '2021-02-12 17:39:56.000000', '2021-02-12 17:39:56.357521'),
+(2, 'owner', 2, 'Granted to upload content and make changes.', '2021-02-12 17:39:56.000000', '2021-02-12 17:39:56.476480'),
+(3, 'manager', 3, 'Granted to upload content, have a view of customer details and make transaction.', '2021-02-12 17:39:56.000000', '2021-02-12 17:39:56.501527'),
+(4, 'agent', 4, 'Granted to have a view of customer details and make transaction if possible.', '2021-02-12 17:39:56.000000', '2021-02-12 17:39:56.530299'),
+(5, 'customer', 5, 'Granted to view the content and make transations.', '2021-02-12 17:39:56.000000', '2021-02-12 17:39:56.565633');
 
 -- --------------------------------------------------------
 
@@ -215,15 +255,22 @@ CREATE TABLE `trailer` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `firtsname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `lastname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `brand` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `employeeId` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `brand`, `phone`, `email`, `address`, `password`, `createdAt`, `updatedAt`, `employeeId`) VALUES
+(1, '255757944370', '255757944370', 'sadrumsumi@gmail.com', NULL, '$2a$10$XtD69rOEztQ6zUDebk2/iucfeWnEZ8zrGfMF.qpRXq31iiWHC0QbW', '2021-02-12 17:44:20.000000', '2021-02-12 17:44:20.266013', NULL);
 
 -- --------------------------------------------------------
 
@@ -238,6 +285,13 @@ CREATE TABLE `use_role` (
   `userId` int DEFAULT NULL,
   `roleId` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `use_role`
+--
+
+INSERT INTO `use_role` (`id`, `createdAt`, `updatedAt`, `userId`, `roleId`) VALUES
+(1, '2021-02-12 17:44:20.000000', '2021-02-12 17:44:20.330969', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -269,6 +323,12 @@ ALTER TABLE `hall`
 ALTER TABLE `image`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_f9ca629edc61a86c266d14eb8df` (`movieId`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `movie`
@@ -333,8 +393,9 @@ ALTER TABLE `trailer`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`),
+  ADD UNIQUE KEY `IDX_eea489f799590e165d366505f3` (`brand`),
   ADD UNIQUE KEY `IDX_8e1f623798118e629b46a9e629` (`phone`),
+  ADD UNIQUE KEY `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`),
   ADD KEY `FK_ab4a80281f1e8d524714e00f38f` (`employeeId`);
 
 --
@@ -353,7 +414,7 @@ ALTER TABLE `use_role`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -372,6 +433,12 @@ ALTER TABLE `hall`
 --
 ALTER TABLE `image`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `movie`
@@ -395,7 +462,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -425,13 +492,13 @@ ALTER TABLE `trailer`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `use_role`
 --
 ALTER TABLE `use_role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

@@ -53,8 +53,9 @@ export class userServices {
   /** /POST */
   static async postSignup(req: Request, res: Response) {
     try {
-      const { phone, email, password, cpassword } = req.body;
+      const { brand, phone, email, password, cpassword } = req.body;
       const { status } = await Validation.signup({
+        brand,
         phone,
         email,
         password,
