@@ -1,7 +1,7 @@
 import { User, Role, UseRole } from "../entity";
 import { Logger, Db } from "../config";
 import { RoleType } from "../utils";
-import { filter } from "vue/types/umd";
+import { runInContext } from "vm";
 
 export class ownerModal {
   /** */
@@ -55,12 +55,27 @@ export class ownerModal {
       let fetchResult = await User.find({
         relations: ["userole", "userole.role"],
       });
-      fetchResult = JSON.parse(JSON.stringify(fetchResult));
-      const filterResult = await fetchResult.filter(
-        await ownerModal.filterByRole
-      );
-      console.log(filterResult);
-      return Promise.resolve(filterResult);
+
+      const filterResult = fetchResult.filter((data) => {
+        return RoleType.target({
+          key: "owner",
+          data: data["userole"].map((data) => {
+            return data.role.name;
+          }),
+        });
+      });
+
+      const mapResult = filterResult.map((data) => {
+        return {
+          id: data["id"],
+          brand: data["brand"],
+          phone: data["phone"],
+          email: data["email"],
+          address: data["address"],
+        };
+      });
+
+      return Promise.resolve(mapResult);
     } catch (error) {
       Logger.error(error);
       return Promise.reject({
@@ -68,14 +83,6 @@ export class ownerModal {
         message: "Somethings went wrong, try again later.",
       });
     }
-  }
-
-  /** */
-  static async filterByRole(item): Promise<any> {
-    if (await RoleType.check({ key: "owner", data: item["userole"] })) {
-      return true;
-    }
-    return false;
   }
 }
 

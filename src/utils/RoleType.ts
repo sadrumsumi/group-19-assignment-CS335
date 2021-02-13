@@ -1,24 +1,46 @@
+import { Sort } from "../utils";
+
 export class RoleType {
   /** */
-  static async check({ key, data }: check): Promise<any> {
-    let roles = "";
+  static async get({ data }: role): Promise<any> {
+    let roles = [];
     if (data.length == 1) {
-      roles += `${data[0]["role"]["name"]}`;
+      roles.push({
+        role: `${data[0]["role"]["name"]}`,
+        position: `${data[0]["role"]["position"]}`,
+      });
     } else {
-      for (let a = 1; a <= data.length; a++) {
-        roles += `${data[a - 1]["role"]["name"]}`;
-        if (a < data.length) {
-          roles += ",";
-        }
+      for (let a = 0; a < data.length; a++) {
+        roles.push({
+          role: `${data[a]["role"]["name"]}`,
+          position: `${data[a]["role"]["position"]}`,
+        });
       }
     }
-    return Promise.resolve(roles.split(",").includes(key) ? true : false);
+    return Promise.resolve(roles);
   }
 
-  /** */
+  /** target */
+  static target({ key, data }) {
+    return data.includes(key);
+  }
+
+  /** give priority */
+  static async givePriority({ data }: role): Promise<any> {
+    try {
+      const roles = await Sort.data(await RoleType.get({ data }));
+      return Promise.resolve(roles[0]["role"]);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }
 
-export interface check {
-  key: string;
+export interface role {
   data: any;
+}
+
+export interface target {
+  key: string;
+  data: Array<Object>;
 }

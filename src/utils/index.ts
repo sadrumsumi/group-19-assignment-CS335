@@ -4,5 +4,14 @@ import { Password } from "./Password";
 import { Upload } from "./Upload";
 import { RoleType } from "./RoleType";
 import { Extract } from "./Extract";
+import { Sort } from "./Sort";
 
-export { Authentication, Extract, RoleType, Validation, Password, Upload };
+export {
+  Authentication,
+  Extract,
+  RoleType,
+  Sort,
+  Validation,
+  Password,
+  Upload,
+};
