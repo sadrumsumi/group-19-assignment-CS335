@@ -5,8 +5,10 @@ import { paymentRouter } from "./payment";
 import { employeeRouter } from "./Employee";
 import { ticketRouter } from "./Ticket";
 import { contactRouter } from "./Contact";
+import { movieRouter } from "./Movie";
 
 export const Routes = [
+  movieRouter,
   contactRouter,
   ticketRouter,
   employeeRouter,

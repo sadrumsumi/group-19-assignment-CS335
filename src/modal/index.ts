@@ -3,5 +3,13 @@ import { ownerModal } from "./Owner";
 import { employeeModal } from "./Employee";
 import { ticketModal } from "./Tickets";
 import { contactModal } from "./Contact";
+import { movieModal } from "./Movie";
 
-export { contactModal, ownerModal, userModal, employeeModal, ticketModal };
+export {
+  movieModal,
+  contactModal,
+  ownerModal,
+  userModal,
+  employeeModal,
+  ticketModal,
+};

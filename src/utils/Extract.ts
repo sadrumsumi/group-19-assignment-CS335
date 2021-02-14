@@ -6,8 +6,14 @@ env.config();
 export class Extract {
   /** */
   static async token(req: Request): Promise<any> {
-    const token = req.cookies.token;
-    return Promise.resolve(await jwt.verify(token, process.env.LOGIN_SECRETE));
+    try {
+      const token = req.cookies.token;
+      return Promise.resolve(
+        await jwt.verify(token, process.env.LOGIN_SECRETE)
+      );
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   /** */

@@ -1,6 +1,6 @@
-import * as express from "express";
+import { Router } from "express";
 import { ticketServices } from "../services";
 
-export const ticketRouter = express.Router();
+export const ticketRouter = Router();
 
 ticketRouter.get("/ticket", ticketServices.getPage);

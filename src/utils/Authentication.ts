@@ -52,7 +52,7 @@ export class Authentication {
       if (!token) {
         next();
       } else {
-        res.redirect("/");
+        res.redirect("/signin");
       }
     } catch (error) {
       res.render("error", { error: error });

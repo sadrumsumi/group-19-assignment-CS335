@@ -1,11 +1,12 @@
 import { Authentication } from "./Authentication";
 import { Validation } from "./Validation";
 import { Password } from "./Password";
-import { Upload } from "./Upload";
+import { Storage } from "./Storage";
 import { RoleType } from "./RoleType";
 import { Extract } from "./Extract";
 import { Filter } from "./Filter";
 import { Sort } from "./Sort";
+import { Fs } from "./Fs";
 
 export {
   Authentication,
@@ -13,7 +14,8 @@ export {
   Password,
   RoleType,
   Extract,
-  Upload,
+  Storage,
   Filter,
   Sort,
+  Fs,
 };

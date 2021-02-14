@@ -9,6 +9,7 @@ import * as createError from "http-errors";
 import * as cookieParser from "cookie-parser";
 import { NextFunction, Request, Response } from "express";
 
+import { Fs } from "./utils";
 import * as env from "dotenv";
 import { Logger } from "./config";
 import { Routes } from "./routes";
@@ -17,6 +18,9 @@ env.config();
 
 export default (async function () {
   try {
+    // check file system
+    await Fs.check();
+
     // wait for database connections
     await createConnection();
 
@@ -32,6 +36,7 @@ export default (async function () {
     app.use(
       express.static(path.join(__dirname, "../node_modules/bootstrap/dist"))
     );
+    app.use(express.static(path.join(__dirname, "../../upload/videos")));
 
     // view engine configurations
     app.set("views", path.join(__dirname, "views"));
