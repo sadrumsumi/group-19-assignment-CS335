@@ -15,9 +15,10 @@ export class employeeServices {
   }
 
   /** */
-  static async getAdd(req: Request, res: Response) {
+  static async getCustomer(req: Request, res: Response) {
     try {
-      res.render("employeeadd", { data: [] });
+      const fetchResult = await employeeModal.getCustomer();
+      res.render("employeeadd", { data: fetchResult });
     } catch (error) {
       res.render("error", { error: error });
     }

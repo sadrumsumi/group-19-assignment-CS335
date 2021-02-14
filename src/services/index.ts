@@ -5,7 +5,7 @@ import { ownerServices } from "./owners";
 import { paymentServices } from "./payment";
 import { employeeServices } from "./Employee";
 import { dashboardServices } from "./dashboard";
-import { ticketServices } from "./Tickets";
+import { ticketServices } from "./Ticket";
 import {contactServices} from "./Contact";
 
 export {

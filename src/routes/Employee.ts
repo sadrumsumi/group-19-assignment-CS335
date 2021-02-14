@@ -13,5 +13,5 @@ employeeRouter.get(
 employeeRouter.get(
   "/employee-add",
   Authentication.verifyToken,
-  employeeServices.getAdd
+  employeeServices.getCustomer
 );

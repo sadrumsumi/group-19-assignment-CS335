@@ -3,7 +3,7 @@ import { homeRouter } from "./home";
 import { owneRouter } from "./owners";
 import { paymentRouter } from "./payment";
 import { employeeRouter } from "./Employee";
-import { ticketRouter } from "./Tickets";
+import { ticketRouter } from "./Ticket";
 import { contactRouter } from "./Contact";
 
 export const Routes = [

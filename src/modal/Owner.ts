@@ -1,7 +1,6 @@
 import { User, Role, UseRole } from "../entity";
 import { Logger, Db } from "../config";
-import { RoleType } from "../utils";
-import { runInContext } from "vm";
+import { Filter } from "../utils";
 
 export class ownerModal {
   /** */
@@ -52,30 +51,12 @@ export class ownerModal {
   /** */
   static async getOweners() {
     try {
-      let fetchResult = await User.find({
+      let getAllUser = await User.find({
         relations: ["userole", "userole.role"],
       });
 
-      const filterResult = fetchResult.filter((data) => {
-        return RoleType.target({
-          key: "owner",
-          data: data["userole"].map((data) => {
-            return data.role.name;
-          }),
-        });
-      });
-
-      const mapResult = filterResult.map((data) => {
-        return {
-          id: data["id"],
-          brand: data["brand"],
-          phone: data["phone"],
-          email: data["email"],
-          address: data["address"],
-        };
-      });
-
-      return Promise.resolve(mapResult);
+      const filteResult = await Filter.user({ key: "owner", getAllUser });
+      return Promise.resolve(filteResult);
     } catch (error) {
       Logger.error(error);
       return Promise.reject({
