@@ -4,3 +4,5 @@ import { ticketServices } from "../services";
 export const ticketRouter = Router();
 
 ticketRouter.get("/ticket", ticketServices.getPage);
+
+ticketRouter.post("/ticket", ticketServices.posTicket);

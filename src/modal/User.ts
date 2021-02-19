@@ -1,9 +1,10 @@
-import { User, UseRole, Role } from "../entity";
+import { User, UseRole, Role, Activity } from "../entity";
 import { Db, Logger } from "../config";
+import { Task } from "../modal";
 
 export class userModal {
   /** */
-  static async signup({ phone, email, password }): Promise<any> {
+  static async signup({ phone, email, password, activity }): Promise<any> {
     // get state of a database
     const queryRunner = await Db.state();
     // start stransaction
@@ -31,6 +32,19 @@ export class userModal {
         role: role,
       });
       await queryRunner.manager.save(userole);
+
+      const loginActivity = new Activity({
+        type: "signup",
+        ip: activity["ip"],
+        user: activity,
+        flag: activity["flag"],
+        city: activity["city"],
+        country: activity["country"],
+        district: activity["district"],
+        latitude: activity["latitude"],
+        longitude: activity["longitude"],
+      });
+      await queryRunner.manager.save(loginActivity);
 
       // commit stransaction
       await queryRunner.commitTransaction();

@@ -76,7 +76,21 @@ export class userServices {
   /** /POST */
   static async postSignup(req: Request, res: Response) {
     try {
-      let { brand, phone, email, password, cpassword } = req.body;
+      let {
+        ip,
+        city,
+        brand,
+        phone,
+        email,
+        cpassword,
+        password,
+        district,
+        latitude,
+        longitude,
+        country_flag,
+        country_name,
+      } = req.body;
+
       brand = brand == undefined ? phone : brand;
 
       const { status } = await Validation.signup({
@@ -93,6 +107,15 @@ export class userServices {
           phone,
           email,
           password: hash,
+          activity: {
+            ip,
+            city,
+            district,
+            latitude,
+            longitude,
+            country_flag,
+            country_name,
+          },
         });
         if (status) {
           res.render("signin", { error: "" });

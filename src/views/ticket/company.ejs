@@ -30,6 +30,7 @@
       href="/assets/vendor/datatables/dataTables.bootstrap4.min.css"
       rel="stylesheet"
     />
+    <link href="/assets/css/style.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -170,44 +171,90 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                  DataTables Example
-                </h6>
+            <!-- Content Row -->
+            <div class="row">
+              <!-- Content Column -->
+              <div class="col-lg-4 col-sm-12 mb-4">
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Add Ticket
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <form class="user" action="/ticket" method="POST">
+                      <div class="form-group">
+                        <input
+                          placeholder="Ticket category eg: Diamond"
+                          class="form-control"
+                          name="category"
+                          type="text"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <input
+                          placeholder="Price"
+                          class="form-control"
+                          name="price"
+                          type="number"
+                          min="1"
+                          required
+                        />
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-block">
+                        Upload
+                      </button>
+                    </form>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table
-                    class="table table-bordered"
-                    id="dataTable"
-                    width="100%"
-                    cellspacing="0"
-                  >
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for(a = 0; a < 5; a++){ %>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                      </tr>
-                      <% } %>
-                    </tbody>
-                  </table>
+
+              <div class="col-lg-8 col-sm-12 mb-4">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">List</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        class="table table-bordered"
+                        id="dataTable"
+                        width="100%"
+                        cellspacing="0"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(value in data){ %>
+                          <tr>
+                            <td><%= data[value]["category"] %></td>
+                            <td><%= data[value]["amount"] %></td>
+                            <td>
+                              <button
+                                data-toggle="modal"
+                                onclick="clicked(this)"
+                                id="'file_'<%= value %>"
+                                data-target="#movieModal"
+                                class="btn btn-sm btn-primary"
+                                value="<%= data[value]['file'] %>"
+                              >
+                                <i class="fas fa-eye fa-1x text-gray-300"></i>
+                              </button>
+                            </td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -235,6 +282,26 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- movie modal -->
+    <div
+      class="modal fade"
+      id="movieModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-dialog modal-lg">
+              <iframe src="" width="100%" height="400px"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -251,5 +318,21 @@
 
     <!-- Page level custom scripts -->
     <script src="/assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+      function clicked(e) {
+        var data = document.getElementById(e.id).value;
+        $("#movieModal iframe").attr(
+          "src",
+          `${"http://sadrumsumi:8888/" + data}`
+        );
+      }
+
+      $("#movieModal")
+        .on("shown.bs.modal", function () {})
+        .on("hidden.bs.modal", function (e) {
+          $("#movieModal iframe").attr("src", "");
+        });
+    </script>
   </body>
 </html>

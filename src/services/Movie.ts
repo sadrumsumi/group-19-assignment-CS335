@@ -1,6 +1,6 @@
+import { Extract, Screenshots } from "../utils";
 import { Request, Response } from "express";
 import { movieModal } from "../modal";
-import { Extract } from "../utils";
 
 export class movieServices {
   /** */
@@ -19,7 +19,9 @@ export class movieServices {
     try {
       const { title, description } = req.body;
       const { phone } = await Extract.token(req);
-      const { filename } = req.file;
+      const { path, filename } = req.file;
+      // take a screenshots
+      // await Screenshots.take({ videoPath: path });
 
       const insResult = await movieModal.addMovie({
         file: filename,

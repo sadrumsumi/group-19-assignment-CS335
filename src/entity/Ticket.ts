@@ -22,17 +22,11 @@ export class Ticket extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ nullable: false })
-  number: number;
-
-  @Column({ nullable: false })
-  seat_no: string;
+  @Column({ nullable: false, unique: true })
+  type: string;
 
   @Column({ nullable: false })
   price: number;
-
-  @Column({ nullable: false })
-  type: string;
 
   @OneToOne((type) => Payment, (payment) => payment.ticket)
   payment: Payment;
@@ -40,7 +34,7 @@ export class Ticket extends BaseEntity {
   @ManyToOne((type) => User, (user) => user.ticket, { nullable: false })
   user: User;
 
-  @ManyToOne((type) => Shows, (shows) => shows.ticket, { nullable: false })
+  @ManyToOne((type) => Shows, (shows) => shows.ticket)
   shows: Shows;
 
   // date the data issued
@@ -54,13 +48,11 @@ export class Ticket extends BaseEntity {
   @BeforeInsert()
   updateDateCreation() {
     this.createdAt = Today(new Date()).format();
- 
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
     this.updatedAt = Today(new Date()).format();
- 
   }
 
   constructor(data?: hall) {
@@ -68,19 +60,13 @@ export class Ticket extends BaseEntity {
     if (data) {
       this.user = data.user;
       this.type = data.type;
-      this.shows = data.shows;
       this.price = data.price;
-      this.number = data.number;
-      this.seat_no = data.seat_no;
     }
   }
 }
 
 export interface hall {
   user: User;
-  shows: Shows;
   type: string;
   price: number;
-  number: number;
-  seat_no: string;
 }

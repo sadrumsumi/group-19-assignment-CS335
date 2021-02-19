@@ -9,7 +9,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin</title>
+    <title>Owner</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -30,6 +30,8 @@
       href="/assets/vendor/datatables/dataTables.bootstrap4.min.css"
       rel="stylesheet"
     />
+
+    <link href="/assets/css/style.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -54,7 +56,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0" />
 
-        <%- include("../partial/sidebar/admin.ejs") %>
+        <%- include('../partial/sidebar/owner.ejs') %>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
@@ -134,10 +136,13 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
                     >Douglas McGee</span
-                  > -->
-                  <i class="fas fa-user-circle fa-2x text-gray-300"></i>
+                  >
+                  <img
+                    class="img-profile rounded-circle"
+                    src="img/undraw_profile.svg"
+                  />
                 </a>
                 <!-- Dropdown - User Information -->
                 <div
@@ -148,7 +153,7 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
-                  <a class="dropdown-item" href="/activity">
+                  <a class="dropdown-item" href="/">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
                   </a>
@@ -167,40 +172,54 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                  DataTables Example
-                </h6>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table
-                    class="table table-bordered"
-                    id="dataTable"
-                    width="100%"
-                    cellspacing="0"
+            <!-- Content Row -->
+            <div class="row">
+              <!-- Content Column -->
+              <div class="col-lg-12 col-sm-12 mb-4">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                  <div
+                    style="display: flex; justify-content: space-between"
+                    class="card-header py-3"
                   >
-                    <thead>
-                      <tr>
-                        <th>Username</th>
-                        <th>Reference</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for(a = 0; a < 0; a++){ %>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <% } %>
-                    </tbody>
-                  </table>
+                    <h6 class="m-0 font-weight-bold text-primary"></h6>
+                    <a
+                      style="text-decoration: none"
+                      class="font-weight-bold text-primary"
+                      href="/employee-add"
+                      >Add</a
+                    >
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        class="table table-bordered"
+                        id="dataTable"
+                        width="100%"
+                        cellspacing="0"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Phone</th>
+                            <th>Reference</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(value in data){ %>
+                          <tr>
+                            <td><%= data[value]['phone'] %></td>
+                            <td><%= %></td>
+                            <td><%= %></td>
+                            <td><%= data[value]['email'] %></td>
+                            <td></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -41,6 +41,10 @@ export class admin1613139696767 implements MigrationInterface {
             type: "signup",
             longitude: "",
             latitude: "",
+            district: "",
+            country: "",
+            city: "",
+            flag: "",
             ip: "",
           });
           await queryRunner.manager.save(dataActivity);

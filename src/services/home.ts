@@ -18,11 +18,15 @@ export class homeServices {
 
         // redirect to admin dashboard
         if (role.split(",").includes("admin")) {
-          res.render("dashboard/admin", { data: [] });
+          res.render("dashboard/admin", {
+            data: { owner: 0, payment: 0, comment: 0, notification: 0 },
+          });
         }
         // redirect to owner dashboard
         else if (role.split(",").includes("owner")) {
-          res.render("dashboard/owner", { data: [] });
+          res.render("dashboard/owner", {
+            data: { employee: 0, payment: 0, comment: 0, notification: 0 },
+          });
         }
         // redirect to agent dashboard
         else if (role.split(",").includes("agent")) {
@@ -30,7 +34,9 @@ export class homeServices {
         }
         // redirect to manager dashboard
         else if (role.split(",").includes("manager")) {
-          res.render("dashboard/manager", { data: [] });
+          res.render("dashboard/manager", {
+            data: { employee: 0, payment: 0, comment: 0, notification: 0 },
+          });
         }
         // redirect to customer dashboard
         else if (role.split(",").includes("customer")) {
