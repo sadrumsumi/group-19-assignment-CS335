@@ -7,8 +7,10 @@ import { dashboardServices } from "./dashboard";
 import { ticketServices } from "./Ticket";
 import { contactServices } from "./Contact";
 import { movieServices } from "./Movie";
+import { activityService } from "./Activity";
 
 export {
+  activityService,
   movieServices,
   ticketServices,
   contactServices,

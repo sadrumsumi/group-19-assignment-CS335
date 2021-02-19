@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { Validation, Password } from "../utils";
-import { userModal } from "../modal";
-import { Authentication } from "../utils";
+import { Validation, Password, Authentication } from "../utils";
+import { userModal, Task } from "../modal";
 
 export class userServices {
   /** /GET */
@@ -12,7 +11,18 @@ export class userServices {
   /** /POST */
   static async postSignin(req: Request, res: Response) {
     try {
-      const { username, password } = req.body;
+      const {
+        ip,
+        city,
+        username,
+        password,
+        district,
+        latitude,
+        longitude,
+        country_flag,
+        country_name,
+      } = req.body;
+
       const validation = await Validation.signin({
         username,
         password,
@@ -26,9 +36,22 @@ export class userServices {
           });
           if (comparison["status"]) {
             const { message } = await Authentication.genarateToken(req, res, {
+              id: fetchResult["message"]["id"],
               phone: fetchResult["message"]["phone"],
               email: fetchResult["message"]["email"],
               role: fetchResult["message"]["userole"],
+            });
+            await Task.login({
+              id: fetchResult["message"]["phone"],
+              data: {
+                ip,
+                city,
+                district,
+                latitude,
+                longitude,
+                flag: country_flag,
+                country: country_name,
+              },
             });
             message.redirect("/");
           } else {

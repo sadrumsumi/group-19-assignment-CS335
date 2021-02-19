@@ -30,7 +30,6 @@
       href="/assets/vendor/datatables/dataTables.bootstrap4.min.css"
       rel="stylesheet"
     />
-    <link href="/assets/css/style.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -149,7 +148,7 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
-                  <a class="dropdown-item" href="/activity">
+                  <a class="dropdown-item" href="/">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
                   </a>
@@ -168,94 +167,44 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- Content Row -->
-            <div class="row">
-              <!-- Content Column -->
-              <div class="col-lg-4 col-sm-12 mb-4">
-                <!-- Project Card Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Registration form
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <form class="user" method="POST" action="/addOwner">
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          id="brand"
-                          name="brand"
-                          type="text"
-                          aria-describedby="brandHelp"
-                          placeholder="Brand..."
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          id="phone"
-                          name="phone"
-                          type="number"
-                          aria-describedby="emailHelp"
-                          placeholder="Phone..."
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          id="email"
-                          name="email"
-                          type="email"
-                          aria-describedby="emailHelp"
-                          placeholder="Email..."
-                        />
-                      </div>
-                      <button type="submit" class="btn btn-primary btn-block">
-                        Submit
-                      </button>
-                    </form>
-                  </div>
-                </div>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Login Activity
+                </h6>
               </div>
-
-              <div class="col-lg-8 col-sm-12 mb-4">
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">List</h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table
-                        class="table table-bordered"
-                        id="dataTable"
-                        width="100%"
-                        cellspacing="0"
-                      >
-                        <thead>
-                          <tr>
-                            <th>Brand</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <% for(value in data){ %>
-                          <tr>
-                            <td><%= data[value].brand %></td>
-                            <td><%= data[value].phone %></td>
-                            <td><%= data[value].email %></td>
-                            <td><%= data[value].address %></td>
-                            <td></td>
-                          </tr>
-                          <% } %>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Flag</th>
+                        <th>District</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>IP Address</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(value in data){ %>
+                      <tr>
+                        <td><img src="<%= data[value]['flag'] %>" width="70px" height="40px"/></td>
+                        <td><%= data[value]['district'] %></td>
+                        <td><%= data[value]['city'] %></td>
+                        <td><%= data[value]['country'] %></td>
+                        <td><%= data[value]['ip'] %></td>
+                        <td><%= data[value]['time'] %></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -282,45 +231,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/assets/vendor/jquery/jquery.min.js"></script>

@@ -19,6 +19,18 @@ export class Activity extends BaseEntity {
   id: string;
 
   @Column({ default: null })
+  flag: string;
+
+  @Column({ default: null })
+  district: string;
+
+  @Column({ default: null })
+  city: string;
+
+  @Column({ default: null })
+  country: string;
+
+  @Column({ default: null })
   ip: string;
 
   @Column({ default: null })
@@ -44,13 +56,11 @@ export class Activity extends BaseEntity {
   @BeforeInsert()
   updateDateCreation() {
     this.createdAt = Today(new Date()).format();
- 
   }
 
   @BeforeUpdate()
   updateDateUpdate() {
     this.updatedAt = Today(new Date()).format();
- 
   }
 
   constructor(data?: hall) {
@@ -58,7 +68,11 @@ export class Activity extends BaseEntity {
     if (data) {
       this.ip = data.ip;
       this.user = data.user;
+      this.flag = data.flag;
+      this.city = data.city;
       this.type = data.type;
+      this.country = data.country;
+      this.district = data.district;
       this.latitude = data.latitude;
       this.longitude = data.longitude;
     }
@@ -68,7 +82,11 @@ export class Activity extends BaseEntity {
 export interface hall {
   ip: string;
   user: User;
+  flag: string;
+  city: string;
   type: string;
+  country: string;
+  district: string;
   latitude: string;
   longitude: string;
 }

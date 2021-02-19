@@ -54,45 +54,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0" />
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-          <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Employee -->
-        <li class="nav-item">
-          <a class="nav-link" href="/employee">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Employee</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Tickets -->
-        <li class="nav-item">
-          <a class="nav-link" href="/tickets">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Tickets</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Payment -->
-        <li class="nav-item">
-          <a class="nav-link" href="/payment">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Payment</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-          <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Notifications</span></a
-          >
-        </li>
+        <%- include("../partial/sidebar/admin.ejs") %>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
@@ -172,13 +134,10 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small"
                     >Douglas McGee</span
-                  >
-                  <img
-                    class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg"
-                  />
+                  > -->
+                  <i class="fas fa-user-circle fa-2x text-gray-300"></i>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div
@@ -189,7 +148,7 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
-                  <a class="dropdown-item" href="/">
+                  <a class="dropdown-item" href="/activity">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
                   </a>
@@ -225,23 +184,19 @@
                   >
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Username</th>
+                        <th>Reference</th>
+                        <th>Amount</th>
+                        <th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <% for(a = 0; a < 5; a++){ %>
+                      <% for(a = 0; a < 0; a++){ %>
                       <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <% } %>
                     </tbody>

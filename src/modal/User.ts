@@ -1,6 +1,5 @@
 import { User, UseRole, Role } from "../entity";
 import { Db, Logger } from "../config";
-import { userRouter } from "../routes/user";
 
 export class userModal {
   /** */
@@ -67,7 +66,7 @@ export class userModal {
         });
       }
 
-      let { phone, email, password, userole } = data;
+      let { id, phone, email, password, userole } = data;
       let role = "";
 
       if (userole.length == 1) {
@@ -83,7 +82,7 @@ export class userModal {
       // give feedback
       return Promise.resolve({
         status: true,
-        message: { phone, email, password, userole: role },
+        message: { id, phone, email, password, userole: role },
       });
     } catch (error) {
       Logger.error(error);
