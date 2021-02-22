@@ -7,7 +7,7 @@ import { Movie } from "./Movie";
 import { Shows } from "./Shows";
 import { Ticket } from "./Ticket";
 import { Trailer } from "./Trailer";
-import { Comment } from "./Comment";
+import { Contact } from "./Contact";
 import { Payment } from "./Payment";
 import { UseRole } from "./UseRole";
 import { Activity } from "./Activity";
@@ -23,7 +23,7 @@ export {
   Shows,
   Ticket,
   Trailer,
-  Comment,
+  Contact,
   Payment,
   UseRole,
   Activity,

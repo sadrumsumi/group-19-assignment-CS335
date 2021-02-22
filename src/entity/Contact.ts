@@ -12,7 +12,7 @@ import {
 import { Today } from "../config";
 
 @Entity()
-export class Comment extends BaseEntity {
+export class Contact extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 

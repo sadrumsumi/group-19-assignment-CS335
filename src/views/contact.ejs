@@ -54,7 +54,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0" />
 
-        <%- include("../partial/sidebar/admin.ejs") %>
+        <%- include("partial/sidebar/admin.ejs") %>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
@@ -184,15 +184,19 @@
                   >
                     <thead>
                       <tr>
-                        <th>IP Address</th>
-                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
                       </tr>
                     </thead>
                     <tbody>
                       <% for(value in data){ %>
                       <tr>
-                        <td><%= data[value]['ip'] %></td>
-                        <td><%= data[value]['time'] %></td>
+                        <td><%= data[value]['name'] %></td>
+                        <td><%= data[value]['email'] %></td>
+                        <td><%= data[value]['subject'] %></td>
+                        <td><%= data[value]['message'] %></td>
                       </tr>
                       <% } %>
                     </tbody>

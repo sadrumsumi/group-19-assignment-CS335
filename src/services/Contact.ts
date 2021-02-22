@@ -16,4 +16,12 @@ export class contactServices {
   }
 
   /** */
+  static async contact(req: Request, res: Response) {
+    try {
+      const fetchResult = await contactModal.contact();
+      res.render("contact", { data: fetchResult });
+    } catch (error) {
+      res.render("error", { error: error });
+    }
+  }
 }
