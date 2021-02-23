@@ -8,8 +8,10 @@ import { ticketServices } from "./Ticket";
 import { contactServices } from "./Contact";
 import { movieServices } from "./Movie";
 import { activityService } from "./Activity";
+import { notificationServices } from "./Notification";
 
 export {
+  notificationServices,
   activityService,
   movieServices,
   ticketServices,

@@ -7,8 +7,10 @@ import { ticketRouter } from "./Ticket";
 import { contactRouter } from "./Contact";
 import { movieRouter } from "./Movie";
 import { activityRouter } from "./Activity";
+import { notificatinRouter } from "./Notification";
 
 export const Routes = [
+  notificatinRouter,
   activityRouter,
   movieRouter,
   contactRouter,

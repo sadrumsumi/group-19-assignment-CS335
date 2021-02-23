@@ -1,6 +1,6 @@
 import * as env from "dotenv";
 import * as jwt from "jsonwebtoken";
-
+import { homeModal } from "../modal";
 import { Response, Request } from "express";
 
 env.config();
@@ -11,15 +11,16 @@ export class homeServices {
       // extract token
       const token = req.cookies.token || "";
       if (token == "") {
-        res.render("home", { data: [] });
+        res.render("home", { work: [], shows: [] });
       } else {
         // validate token
         const { role } = await jwt.verify(token, process.env.LOGIN_SECRETE);
 
         // redirect to admin dashboard
         if (role.split(",").includes("admin")) {
+          const details = await homeModal.details();
           res.render("dashboard/admin", {
-            data: { owner: 0, payment: 0, comment: 0, notification: 0 },
+            data: { owner: details["owners"], contact: details["contacts"] },
           });
         }
         // redirect to owner dashboard

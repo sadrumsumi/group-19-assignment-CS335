@@ -1,6 +1,5 @@
 import { User, UseRole, Role, Activity } from "../entity";
 import { Db, Logger } from "../config";
-import { Task } from "../modal";
 
 export class userModal {
   /** */
@@ -36,7 +35,7 @@ export class userModal {
       const loginActivity = new Activity({
         type: "signup",
         ip: activity["ip"],
-        user: activity,
+        user: insResult,
         flag: activity["flag"],
         city: activity["city"],
         country: activity["country"],
